@@ -1,0 +1,8 @@
+Jan 11 14:23:45 server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 11 14:23:46 server sshd[1235]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 11 14:23:47 server sshd[1236]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 11 14:23:48 server sshd[1237]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 11 14:23:49 server sshd[1238]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Jan 11 14:23:50 server sshd[1239]: Accepted password for admin from 192.168.1.100 port 22 ssh2
+2024-01-11T14:24:15Z BLOCK TCP 192.168.1.50:12345 -> 10.0.0.5:23
+2024-01-11T14:24:30Z BLOCK TCP 192.168.1.50:12346 -> 10.0.0.5:135

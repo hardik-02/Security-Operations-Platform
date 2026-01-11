@@ -1,0 +1,11 @@
+# Security Operations Platform Dependencies
+# Python 3.8+
+
+# Core
+argparse>=1.4.0
+
+# Optional: For production deployments
+# elasticsearch>=8.0.0
+# requests>=2.28.0
+# python-dotenv>=0.20.0
+# Pillow>=9.0.0
