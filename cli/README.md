@@ -4,61 +4,61 @@ Command-line interface for security operations automation and threat analysis.
 
 ## Installation
 
-```bash
+\`\`\`bash
 # Install Python dependencies
 pip install -r ../requirements.txt
-```
+\`\`\`
 
 ## Usage
 
 ### Parse Logs
-```bash
+\`\`\`bash
 python secops.py parse example-logs.txt
-```
+\`\`\`
 
 ### Detect Threats
-```bash
+\`\`\`bash
 python secops.py detect example-logs.txt
-```
+\`\`\`
 
 ### Enrich IOC
-```bash
+\`\`\`bash
 python secops.py enrich 192.168.1.100
 python secops.py enrich evil.malware.com
 python secops.py enrich d41d8cd98f00b204e9800998ecf8427e
-```
+\`\`\`
 
 ### Create Incident
-```bash
+\`\`\`bash
 python secops.py incident \
   --title "SQL Injection Attempt" \
   --severity high \
   --description "Detected SQL injection in login form"
-```
+\`\`\`
 
 ### List Incidents
-```bash
+\`\`\`bash
 python secops.py incidents
-```
+\`\`\`
 
 ### List IOCs
-```bash
+\`\`\`bash
 # List all IOCs
 python secops.py iocs
 
 # Filter by threat level
 python secops.py iocs --threat-level critical
 python secops.py iocs --threat-level malicious
-```
+\`\`\`
 
 ### Full Analysis Pipeline
-```bash
+\`\`\`bash
 python secops.py analyze example-logs.txt
-```
+\`\`\`
 
 ## Examples
 
-```bash
+\`\`\`bash
 # Scenario: Detect brute force attack
 $ python secops.py detect example-logs.txt
 [+] Parsed 8 security logs
@@ -86,7 +86,7 @@ $ python secops.py analyze example-logs.txt
     ...
 [+] IOC Enrichment: 192.168.1.100
     ...
-```
+\`\`\`
 
 ## Commands Reference
 

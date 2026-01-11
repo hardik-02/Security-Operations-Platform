@@ -13,7 +13,7 @@ A professional Security Operations Center platform demonstrating automated threa
 
 ## Project Structure
 
-```
+\`\`\`
 ├── app/                    # Next.js dashboard
 ├── components/            # React components
 ├── backend/              # Python security services
@@ -22,7 +22,7 @@ A professional Security Operations Center platform demonstrating automated threa
 │   └── responder.py      # Incident response automation
 ├── scripts/              # Utility scripts
 └── data/                # Local data storage
-```
+\`\`\`
 
 ## Quick Start
 
@@ -34,14 +34,14 @@ A professional Security Operations Center platform demonstrating automated threa
 ### Installation
 
 1. Install dependencies:
-```bash
+\`\`\`bash
 npm install
-```
+\`\`\`
 
 2. Start development server:
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
 3. Open [http://localhost:3000](http://localhost:3000)
 

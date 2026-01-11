@@ -65,7 +65,7 @@ This makes it ideal for organizations transitioning from manual processes to aut
 
 ### System Design
 
-```
+\`\`\`
 ┌─────────────────────────────────────────────────────────────┐
 │                    SECURITY OPERATIONS PLATFORM             │
 ├─────────────────────────────────────────────────────────────┤
@@ -110,11 +110,11 @@ This makes it ideal for organizations transitioning from manual processes to aut
 │         └──────────────┘    └─────────────────┘            │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ### Data Flow Example: Brute Force Attack Detection
 
-```
+\`\`\`
 Step 1: Raw Security Log
   └─ "Invalid user admin from 192.168.1.100 port 22"
 
@@ -150,7 +150,7 @@ Step 5: IncidentResponder (Automated Response)
 Step 6: Output Options
   ├─ CLI: Display in terminal with risk summary
   └─ Dashboard: Show in real-time incident feed
-```
+\`\`\`
 
 ---
 
@@ -166,14 +166,14 @@ Step 6: Output Options
 - Application logs (nginx, Apache, custom formats)
 
 **Key Functions**:
-```python
+\`\`\`python
 parse_auth_log()     # Extract login attempts, failures, successes
 parse_network_log()  # Extract connection attempts, port scans, traffic flows
 normalize()          # Convert to standard JSON format
-```
+\`\`\`
 
 **Output Format**:
-```json
+\`\`\`json
 {
   "timestamp": "2024-01-11T10:30:00Z",
   "source_ip": "192.168.1.100",
@@ -184,7 +184,7 @@ normalize()          # Convert to standard JSON format
   "port": 22,
   "severity": "medium"
 }
-```
+\`\`\`
 
 ### 4.2 Threat Detection Engine
 **Purpose**: Apply security rules to detect suspicious patterns (Sigma-based)
@@ -203,7 +203,7 @@ normalize()          # Convert to standard JSON format
 
 **Extensibility**: 
 New Sigma rules can be added as JSON configurations:
-```json
+\`\`\`json
 {
   "title": "Suspicious Process Execution",
   "detection": {
@@ -212,7 +212,7 @@ New Sigma rules can be added as JSON configurations:
   },
   "mitre_technique": "T1059.001"
 }
-```
+\`\`\`
 
 ### 4.3 Threat Intelligence Engine
 **Purpose**: Enrich detections with external threat data
@@ -231,7 +231,7 @@ New Sigma rules can be added as JSON configurations:
 - ABUSE.CH
 
 **Example Output**:
-```json
+\`\`\`json
 {
   "ioc": "192.168.1.100",
   "type": "ip",
@@ -242,16 +242,16 @@ New Sigma rules can be added as JSON configurations:
   "related_incidents": 5,
   "malware_associations": ["emotet", "trickbot"]
 }
-```
+\`\`\`
 
 ### 4.4 Incident Response Engine
 **Purpose**: Automatically create and prioritize incidents with response recommendations
 
 **Incident Lifecycle**:
-```
+\`\`\`
 Detection → Incident Creation → Severity Assignment → 
 Response Recommendation → Analyst Review → Action Execution
-```
+\`\`\`
 
 **Severity Levels**:
 - **CRITICAL** (Severity 9-10): Active breach, C2 communication, data exfiltration
@@ -260,7 +260,7 @@ Response Recommendation → Analyst Review → Action Execution
 - **LOW** (Severity 1-3): Informational, audit trail events
 
 **Auto-Generated Response Actions**:
-```
+\`\`\`
 Brute Force Attack:
 ├─ Immediate
 │  ├─ Block source IP on firewall
@@ -282,7 +282,7 @@ Lateral Movement:
 └─ Long-term
    ├─ Review account permissions
    └─ Implement network segmentation
-```
+\`\`\`
 
 ### 4.5 Web Dashboard (Next.js)
 **Purpose**: Real-time visualization of security operations
@@ -341,48 +341,48 @@ Lateral Movement:
 
 #### `secops parse`
 Parse security logs from file
-```bash
+\`\`\`bash
 secops parse --source auth.log --type linux_auth
-```
+\`\`\`
 
 #### `secops detect`
 Run threat detection engine on parsed logs
-```bash
+\`\`\`bash
 secops detect --file logs.json
-```
+\`\`\`
 
 #### `secops enrich`
 Look up IOC reputation and threat data
-```bash
+\`\`\`bash
 secops enrich --ioc 192.168.1.100 --type ip
-```
+\`\`\`
 
 #### `secops incident`
 Manually create incident from CLI
-```bash
+\`\`\`bash
 secops incident --title "Manual Incident" --severity high --description "..."
-```
+\`\`\`
 
 #### `secops incidents`
 List all incidents with filtering
-```bash
+\`\`\`bash
 secops incidents --severity high --limit 10
-```
+\`\`\`
 
 #### `secops iocs`
 List threat indicators with filtering
-```bash
+\`\`\`bash
 secops iocs --threat_level high
-```
+\`\`\`
 
 #### `secops analyze`
 Full pipeline: parse → detect → enrich → create incidents
-```bash
+\`\`\`bash
 secops analyze --source auth.log --type linux_auth
-```
+\`\`\`
 
 **Usage Example**:
-```bash
+\`\`\`bash
 # Parse logs and detect threats
 secops parse --source /var/log/auth.log --type linux_auth > parsed.json
 
@@ -394,7 +394,7 @@ secops enrich --ioc 203.0.113.45 --type ip
 
 # Run full analysis
 secops analyze --source firewall.log --type network_flow
-```
+\`\`\`
 
 ---
 
@@ -405,17 +405,17 @@ secops analyze --source firewall.log --type network_flow
 **Scenario**: A security analyst needs to investigate suspicious login activity
 
 #### Step 1: Event Occurs (5:30 PM)
-```
+\`\`\`
 Server logs multiple failed SSH login attempts from external IP 203.0.113.45
 - 5:30:01 - Failed login (admin)
 - 5:30:15 - Failed login (root)
 - 5:30:45 - Failed login (admin)
 - 5:31:02 - Failed login (postgres)
 - 5:31:30 - Failed login (admin)
-```
+\`\`\`
 
 #### Step 2: Automated Detection (5:32 PM - 1 minute response time)
-```
+\`\`\`
 LogParser reads /var/log/auth.log
 ↓
 Normalizes to: [5 failed login events from 203.0.113.45]
@@ -443,7 +443,7 @@ Incident Summary:
     ✓ Enable rate limiting on SSH
     ✓ Review account logs for successful breach
     ✓ Force password reset if compromise suspected
-```
+\`\`\`
 
 #### Step 3: Analyst Receives Alert (5:32 PM)
 **Option A: Web Dashboard**
@@ -453,7 +453,7 @@ Incident Summary:
 - Clicks "Block IP" button (triggers automation)
 
 **Option B: CLI Alert**
-```bash
+\`\`\`bash
 $ secops incidents --severity high
 ┌─────────────────────────────────────────────────────────┐
 │ Incident #2024-0115-001                                 │
@@ -465,7 +465,7 @@ $ secops incidents --severity high
 │ Status: NEW                                             │
 │ Created: 2024-01-15 17:32:00                           │
 └─────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 #### Step 4: Response Execution (5:33 PM)
 **Automated Actions**:
@@ -483,7 +483,7 @@ $ secops incidents --severity high
 
 #### Step 5: Investigation & Resolution (5:45 PM - 13 minutes total)
 **Investigation Steps**:
-```bash
+\`\`\`bash
 # Check all activity from attacker IP
 secops analyze --ioc 203.0.113.45 --type ip
 
@@ -495,7 +495,7 @@ secops detect --file lateral_movement.json
 
 # Review incident response actions
 secops incidents --id 2024-0115-001 --show-actions
-```
+\`\`\`
 
 **Outcome**:
 - No successful logins detected (attack blocked)
@@ -655,7 +655,7 @@ secops incidents --id 2024-0115-001 --show-actions
 
 ### 9.1 Local Development Setup
 
-```bash
+\`\`\`bash
 # Clone the project
 git clone <project-repo>
 cd security-ops-platform
@@ -672,11 +672,11 @@ python3 log_parser.py
 
 # Try CLI
 python3 ../cli/secops.py parse --source ../cli/example-logs.txt --type linux_auth
-```
+\`\`\`
 
 ### 9.2 Docker Deployment
 
-```dockerfile
+\`\`\`dockerfile
 # Backend Dockerfile
 FROM python:3.11-slim
 WORKDIR /app
@@ -685,30 +685,30 @@ RUN pip install -r requirements.txt
 CMD ["python", "log_parser.py"]
 
 # Frontend handled by Vercel or custom nginx
-```
+\`\`\`
 
 ### 9.3 Cloud Deployment
 
 **AWS Architecture**:
-```
+\`\`\`
 Internet → CloudFront (CDN)
          → ALB (Application Load Balancer)
          → ECS (Next.js containers)
          → RDS PostgreSQL
          → EC2 (Python backend)
-```
+\`\`\`
 
 **Azure Architecture**:
-```
+\`\`\`
 Internet → Front Door (CDN)
         → App Service (Next.js)
         → Azure SQL Database
         → Virtual Machine (Python backend)
-```
+\`\`\`
 
 ### 9.4 CLI Usage Examples
 
-```bash
+\`\`\`bash
 # Parse authentication logs
 secops parse --source /var/log/auth.log --type linux_auth
 
@@ -729,7 +729,7 @@ secops incidents --id 2024-0115-001 --show-actions
 
 # List high-risk IOCs
 secops iocs --threat_level high
-```
+\`\`\`
 
 ---
 
@@ -795,7 +795,7 @@ This platform demonstrates production-ready security engineering suitable for SO
 ## Appendix: Quick Reference
 
 ### File Structure
-```
+\`\`\`
 security-ops-platform/
 ├── app/                          # Next.js pages
 │   ├── layout.tsx
@@ -820,7 +820,7 @@ security-ops-platform/
 │   ├── example-logs.txt         # Sample data
 │   └── README.md                # CLI documentation
 └── requirements.txt             # Python dependencies
-```
+\`\`\`
 
 ### Key Concepts
 - **Sigma Rules**: Open security detection format (yaml/json)
