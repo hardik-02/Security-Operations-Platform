@@ -101,3 +101,4 @@ This project directly addresses the Security Operations Engineering Intern JD:
 
 ---
 
+Built for demonstration and educational purposes. For production use, integrate with actual SIEM/SOAR solutions.
